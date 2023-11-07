@@ -2,7 +2,6 @@ var path = require("path");
 var webpack = require("webpack");
 
 module.exports = {
-  mode: "production", // 운영 모드로 최적화
   entry: "./src/main.js",
   output: {
     path: path.resolve(__dirname, "./dist"),
@@ -54,23 +53,30 @@ module.exports = {
   devtool: "#eval-source-map",
 };
 
-// if (process.env.NODE_ENV === 'production') {
-//   module.exports.devtool = '#source-map'
-//   // http://vue-loader.vuejs.org/en/workflow/production.html
-//   module.exports.plugins = (module.exports.plugins || []).concat([
-//     new webpack.DefinePlugin({
-//       'process.env': {
-//         NODE_ENV: '"production"'
-//       }
-//     }),
-//     new webpack.optimize.UglifyJsPlugin({
-//       sourceMap: true,
-//       compress: {
-//         warnings: false
-//       }
-//     }),
-//     new webpack.LoaderOptionsPlugin({
-//       minimize: true
-//     })
-//   ])
-// }
+/*
+
+mode: "production", 
+// 최신 webpack에서는 운영 모드로 작성 시 아래와 같은 내용을 작성할 필요 없이 알아서 최적화 된다.
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports.devtool = '#source-map'
+  // http://vue-loader.vuejs.org/en/workflow/production.html
+  module.exports.plugins = (module.exports.plugins || []).concat([
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true
+    })
+  ])
+}
+
+*/
